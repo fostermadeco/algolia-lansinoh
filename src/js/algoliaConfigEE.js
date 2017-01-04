@@ -1,4 +1,4 @@
-window.eeAlgoliaConfig = {
+window.algoliaConfigEE = {
     applicationId: "7CCC0LXQFA",
     autocomplete: {
         apiKey: "OGVhMzZjOTU1Mjc2MWU3MjRkYjBjMTY1Y2E3NGVkOTdjNWQ1ZDJlMThlYWQ5NmQyM2JiM2NlMGIyY2EzOWI3N2ZpbHRlcnM9",

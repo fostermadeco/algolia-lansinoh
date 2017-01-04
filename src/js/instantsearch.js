@@ -3,7 +3,7 @@ import algoliasearch from 'algoliasearch';
 import instantsearch from 'instantsearch.js';
 
 module.exports = function() {
-    var algoliaConfig = window.eeAlgoliaConfig;
+    var algoliaConfig = window.algoliaConfigEE;
     var common = require('./common')(algoliaConfig);
     var templates = require('../templates')();
 
