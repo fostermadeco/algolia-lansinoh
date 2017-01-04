@@ -1,9 +1,8 @@
 import $ from 'jquery';
-
 import autocomplete from 'autocomplete.js';
 
-module.exports = function(config) {
-    var algoliaConfig = config;
+module.exports = function() {
+    var algoliaConfig = window.eeAlgoliaConfig;
 
     misc();
 

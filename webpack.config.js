@@ -5,11 +5,11 @@ const webpack = require('webpack');
 module.exports = {
     context: __dirname + '/src',
     entry: {
-        app: './js/algoliaAutocomplete.js'
+        app: './js/algoliaSearch.js'
     },
     output: {
         path: __dirname + '/dist',
-        filename: '[name].bundle.js',
+        filename: 'algoliaSearch.bundle.js',
         publicPath: '/assets',
     },
     devServer: {

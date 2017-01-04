@@ -3,8 +3,8 @@ import $ from 'jquery';
 import algoliasearch from 'algoliasearch';
 import autocomplete from 'autocomplete.js';
 
-module.exports = function(config) {
-    var algoliaConfig = config;
+module.exports = function() {
+    var algoliaConfig = window.eeAlgoliaConfig;
     var common = require('./common')(algoliaConfig);
 
     return {
@@ -35,7 +35,7 @@ module.exports = function(config) {
          * Docs: https://www.algolia.com/doc/javascript
          **/
         var algoliaClient = algoliasearch(algoliaConfig.applicationId, algoliaConfig.autocomplete.apiKey);
-        algoliaClient.addAlgoliaAgent('Magento integration (' + algoliaConfig.extensionVersion + ')');
+        algoliaClient.addAlgoliaAgent('ExpressionEngine integration (' + algoliaConfig.extensionVersion + ')');
         
         /** Add products and categories that are required sections **/
         var nb_cat = algoliaConfig.autocomplete.nbOfCategoriesSuggestions >= 1 ? algoliaConfig.autocomplete.nbOfCategoriesSuggestions : 2;
@@ -46,8 +46,8 @@ module.exports = function(config) {
             algoliaConfig.autocomplete.sections.unshift({ hitsPerPage: nb_que, label: '', name: "suggestions"});
         }
         
-        algoliaConfig.autocomplete.sections.unshift({ hitsPerPage: nb_cat, label: algoliaConfig.translations.categories, name: "categories"});
-        algoliaConfig.autocomplete.sections.unshift({ hitsPerPage: nb_pro, label: algoliaConfig.translations.products, name: "products"});
+        // algoliaConfig.autocomplete.sections.unshift({ hitsPerPage: nb_cat, label: algoliaConfig.translations.categories, name: "categories"});
+        // algoliaConfig.autocomplete.sections.unshift({ hitsPerPage: nb_pro, label: algoliaConfig.translations.products, name: "products"});
         
         /** Setup autocomplete data sources **/
         var sources = [],
@@ -64,7 +64,7 @@ module.exports = function(config) {
                 i++;
             }
         });
-        
+
         /**
          * ADD YOUR CUSTOM DATA SOURCE HERE
          **/
