@@ -1,12 +1,12 @@
 # Lansinoh Algolia Search for EE
 
-This is repurposing of the Magento search extension for Algolia integration (https://github.com/algolia/algoliasearch-magento-2)[https://github.com/algolia/algoliasearch-magento-2]
+This is repurposing of the Magento search extension for Algolia integration [https://github.com/algolia/algoliasearch-magento-2](https://github.com/algolia/algoliasearch-magento-2_)
 
 It uses:
-* (Algolia js search client)[https://github.com/algolia/algoliasearch-client-javascript]
-* (Algolia's Autocomplete.js)[https://github.com/algolia/autocomplete.js] - search bar input with dropdown results.
-* (Algolia Instant search)[https://community.algolia.com/instantsearch.js/documentation/#introduction] - search page with instant results.
-* (Hogan.js)[https://github.com/twitter/hogan.js] for templating
+* [Algolia js search client](https://github.com/algolia/algoliasearch-client-javascript)
+* [Algolia's Autocomplete.js](https://github.com/algolia/autocomplete.js) - search bar input with dropdown results.
+* [Algolia Instant search](https://community.algolia.com/instantsearch.js/documentation/#introduction) - search page with instant results.
+* [Hogan.js](https://github.com/twitter/hogan.js) for templating
 * jQuery
 
 ## Notes about implementation
