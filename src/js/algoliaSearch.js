@@ -1,7 +1,7 @@
-import search from 'algoliasearch';
-
-var common = require('./common')();
 var autocomplete = require('./autocomplete')();
+var instantsearch = require('./instantsearch')();
+
 document.addEventListener("DOMContentLoaded", function(event) { 
+    instantsearch.init();
     autocomplete.init();
 });

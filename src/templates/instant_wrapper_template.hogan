@@ -1,0 +1,66 @@
+{{#findAutocomplete}}
+ <div id="algolia-autocomplete-container"></div>
+ {{/findAutocomplete}}
+ <div id="algolia_instant_selector" class="">
+
+     
+     <div class="row">
+         <div class="col-md-3" id="algolia-left-container">
+             <div id="refine-toggle" class="visible-xs visible-sm">+ Refine</div>
+             <div class="hidden-xs hidden-sm" id="instant-search-facets-container">
+                 <div id="current-refinements"></div>
+             </div>
+         </div>
+
+         <div class="col-md-9" id="algolia-right-container">
+             <div class="row">
+                 <div class="col-md-12">
+                     <div>
+                         {{#second_bar}}
+                         <div id="instant-search-bar-container">
+                             <div id="instant-search-box">
+                                 <div class="instant-search-bar-label">
+                                     <span class="icon"></span>
+                                     <span>Current search</span>
+                                 </div>
+                                 <div class="instant-search-bar-wrapper">
+                                     <label for="instant-search-bar">
+                                         Search:                                        </label>
+
+                                     <input placeholder="Search for products"
+                                            id="instant-search-bar" type="text" autocomplete="off" spellcheck="false"
+                                            autocorrect="off" autocapitalize="off"/>
+
+                                     <span class="clear-cross clear-query-instant"></span>
+                                 </div>
+                             </div>
+                         </div>
+                         {{/second_bar}}
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                 <div>
+                     <div class="hits">
+                         <div class="infos">
+                             <div class="pull-left" id="algolia-stats"></div>
+                             <div class="pull-right">
+                                 <div class="sort-by-label pull-left">
+                                     SORT BY                                    </div>
+                                 <div class="pull-left" id="algolia-sorts"></div>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                         <div id="instant-search-results-container"></div>
+                     </div>
+                 </div>
+                 <div class="clearfix"></div>
+             </div>
+
+             <div class="text-center">
+                 <div id="instant-search-pagination-container"></div>
+             </div>
+         </div>
+     </div>
+
+ </div>
