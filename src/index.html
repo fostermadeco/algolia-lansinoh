@@ -9,6 +9,7 @@
         
         <!-- css for algolia search -->
         <link rel="stylesheet" href="css/algoliaSearch.css">
+        <link rel="stylesheet" href="css/overrides.css">
     </head>
     <body>
 
@@ -30,17 +31,11 @@
 
         <!-- flat file config base on output of magento algolia config -->
         <script src="js/algoliaConfig.js"></script>
-        <!-- algolia search js bundle -->
+        <!-- algolia search js bundle - dist/algoliaSearch.bundle.js for prod -->
         <script src="assets/algoliaSearch.bundle.js"></script>
 
         <script type="text/template" id="autocomplete_categories_template">
             <a class="algoliasearch-autocomplete-hit" href="{{url}}">
-                {{#image_url}}
-                    <div class="thumb">
-                        <img src="{{image_url}}" />
-                    </div>
-                {{/image_url}}
-
                 <div class="info{{^image_url}}-without-thumb{{/image_url}}">
 
                     {{#_highlightResult.path}}
@@ -83,10 +78,6 @@
         <script type="text/template" id="autocomplete_products_template">
             <!-- Product hit template -->
             <a class="algoliasearch-autocomplete-hit" href="{{url}}">
-                {{#thumbnail_url}}
-                    <div class="thumb"><img src="{{thumbnail_url}}" /></div>
-                {{/thumbnail_url}}
-
                 <div class="info">
                     {{{_highlightResult.name.value}}}
 
@@ -186,18 +177,15 @@
                          <div class="row">
                              <div>
                                  <div class="hits">
-                                     <div class="infos" style="display:none;">
-                                         <div class="pull-right">
-                                             <div class="sort-by-label pull-left">
-                                                 SORT BY                                    </div>
-                                             <div class="pull-left" id="algolia-sorts"></div>
-                                         </div>
-                                         <div class="clearfix"></div>
-                                     </div>
                                      <div class="row tabbed-content">
                                         <div class="col-md-12">
                                             <h5>Products</h5>
                                             <div class="infos">
+                                                <div class="pull-right">
+                                                    <div class="sort-by-label pull-left">
+                                                        SORT BY                                    </div>
+                                                    <div class="pull-left" id="algolia-sorts-products"></div>
+                                                </div>
                                                 <div class="pull-left" id="algolia-stats-products"></div>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -211,6 +199,11 @@
                                         <div class="col-md-12">
                                             <h5>Pages</h5>
                                             <div class="infos">
+                                                <div class="pull-right">
+                                                    <div class="sort-by-label pull-left">
+                                                        SORT BY                                    </div>
+                                                    <div class="pull-left" id="algolia-sorts-pages"></div>
+                                                </div>
                                                 <div class="pull-left" id="algolia-stats-pages"></div>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -257,10 +250,6 @@
                     <div class="result-wrapper">
                         <a href="{{url}}" class="result">
                             <div class="result-content">
-                                <div class="result-thumbnail">
-                                    {{#image_url}}<img src="{{{ image_url }}}"/>{{/image_url}}
-                                    {{^image_url}}<span class="no-image"></span>{{/image_url}}
-                                </div>
                                 <div class="result-sub-content">
                                     <h3 class="result-title text-ellipsis">
                                         {{{ _highlightResult.name.value }}}

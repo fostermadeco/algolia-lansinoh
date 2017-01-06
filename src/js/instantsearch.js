@@ -171,18 +171,36 @@ module.exports = function() {
          * Sorting
          * Docs: https://community.algolia.com/instantsearch.js/documentation/#sortbyselector
          **/
-        // algoliaConfig.sortingIndices.unshift({
-        //     name: algoliaConfig.indexName + '_products',
-        //     label: algoliaConfig.translations.relevance
-        // });
-        
-        // search.addWidget(
-        //     instantsearch.widgets.sortBySelector({
-        //         container: '#algolia-sorts',
-        //         indices: algoliaConfig.sortingIndices,
-        //         cssClass: 'form-control'
-        //     })
-        // );
+         // for products
+        var productRelevanceSort = [
+            {
+                name: algoliaConfig.indexName + '_products',
+                label: algoliaConfig.translations.relevance
+            }
+        ]
+        var productSorting = [...algoliaConfig.sortingIndices, ...productRelevanceSort];
+        var sortProducts = instantsearch.widgets.sortBySelector({
+            container: '#algolia-sorts-products',
+            indices: productSorting,
+            cssClass: 'form-control'
+        });
+        products.addWidget(sortProducts);
+
+        // for pages
+        var pagesRelevanceSort = [
+            {
+                name: algoliaConfig.indexName + '_pages',
+                label: algoliaConfig.translations.relevance
+            }
+        ]
+        var pagesSorting = [...algoliaConfig.sortingIndices, ...pagesRelevanceSort];
+        var sortPages = instantsearch.widgets.sortBySelector({
+            container: '#algolia-sorts-pages',
+            indices: pagesSorting,
+            cssClass: 'form-control'
+        });
+        pages.addWidget(sortPages);
+
         
         /**
          * Products' hits

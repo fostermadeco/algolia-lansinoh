@@ -739,7 +739,7 @@ a.ais-current-refined-values--link:hover
 }
 
 #algolia-search-autocomplete-container .aa-dropdown-menu .algoliasearch-autocomplete-hit .info {
-  margin-left: 85px;
+  /*margin-left: 85px;*/
   /* white-space: nowrap; */
   text-overflow: ellipsis;
   overflow: hidden;
@@ -1170,7 +1170,7 @@ a.ais-current-refined-values--link:hover
 }
 
 #instant-search-results-container-products .result {
-  min-height: 280px;
+  min-height: 150px;
 }
 
 

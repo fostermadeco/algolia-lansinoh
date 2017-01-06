@@ -84,7 +84,7 @@ module.exports = function() {
 
         if (section.name === "products") {
             console.log("this");
-            // options.facets = ['categories.level0'];
+            options.facets = ['categories.level0'];
             // options.numericFilters = 'visibility_search=1';
 
             source = {
@@ -229,6 +229,8 @@ module.exports = function() {
 
         if (section.name === 'products') {
             source.templates.footer = function (query, content) {
+                console.log(query);
+                console.log(content);
                 var keys = [];
                 for (var key in content.facets['categories.level0']) {
                     var url = algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query.query) + '#q=' + encodeURIComponent(query.query) + '&hFR[categories.level0][0]=' + encodeURIComponent(key) + '&idx=' + algoliaConfig.indexName + '_products';
