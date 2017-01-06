@@ -3,16 +3,17 @@ import algoliasearch from 'algoliasearch';
 import autocomplete from 'autocomplete.js';
 
 module.exports = function() {
-    var algoliaConfig = window.algoliaConfigEE;
+    var algoliaConfig = window.algoliaConfig;
     var common = require('./common')(algoliaConfig);
     var templates = require('../templates')();
-    console.log(algoliaConfig);
 
     return {
-        init: init
+        init: init,
+        addTabs: addTabs
     };
     
     function init() {
+
         /** We have nothing to do here if autocomplete is disabled **/
         if (!algoliaConfig.autocomplete.enabled) {
             return;
@@ -82,8 +83,8 @@ module.exports = function() {
                 templates: {
                     dropdownMenu: '#menu-template'
                 },
-                dropdownMenuContainer: "#algolia-autocomplete-container",
-                debug: false
+                dropdownMenuContainer: "#algolia-search-autocomplete-container",
+                debug: true
             };
             
             if (algoliaConfig.removeBranding === false) {
@@ -94,18 +95,26 @@ module.exports = function() {
             autocomplete(algoliaConfig.autocomplete.selector, options, sources)
                 .parent()
                 .attr('id', 'algolia-autocomplete-tt')
-                .on('autocomplete:updated', function (e) {
-                    common.fixAutocompleteCssSticky(menu);
-                })
-                .on('autocomplete:updated', function (e) {
-                    common.fixAutocompleteCssHeight(menu);
-                }).on('autocomplete:selected', function (e, suggestion, dataset) {
+                .on('autocomplete:selected', function (e, suggestion, dataset) {
                     location.assign(suggestion.url);
                 });
             
-            $(window).resize(function () {
-                common.fixAutocompleteCssSticky(menu);
-            });
         });
     };
+
+    function addTabs() {
+        if ($(".search-results-tabs").length === 0) return;
+        // Algolia search results tabs
+        $(".search-results-tabs li:first-child").addClass("active");
+        $("#algolia_instant_selector .tabbed-content:first").addClass("active");
+        $(".search-results-tabs li").each(function() {
+            $(this).on("click", function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                $("#algolia_instant_selector .tabbed-content").removeClass("active");
+                var index = $(this).index();
+                $("#algolia_instant_selector .tabbed-content:eq(" + index + ")").addClass("active");
+            });
+        });
+    }
 };

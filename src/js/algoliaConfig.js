@@ -1,4 +1,4 @@
-window.algoliaConfigEE = {
+window.algoliaConfig = {
     applicationId: "7CCC0LXQFA",
     autocomplete: {
         apiKey: "OGVhMzZjOTU1Mjc2MWU3MjRkYjBjMTY1Y2E3NGVkOTdjNWQ1ZDJlMThlYWQ5NmQyM2JiM2NlMGIyY2EzOWI3N2ZpbHRlcnM9",
@@ -25,7 +25,7 @@ window.algoliaConfigEE = {
             }
         ],
         templates: {},
-        selector: ".algolia-search-input",
+        selector: ".algolia-autocomplete-input",
     },
     autofocus: true,
     baseUrl: "http://lansinohdev.brandshop.com",
@@ -33,22 +33,32 @@ window.algoliaConfigEE = {
     currencySymbol: "$",
     extensionVersion: "0.0.1",
     facets: [],
-    hitsPerPage: 3,
+    hitsPerPage: 6,
     indexName: "magento_lansinoh",
     instant: {
         apiKey:"ZDJiZmYyNzZhYzcwYWY2OGEyY2IyMjNiYjJhOGViM2RhMjY2ZTZkZjIwNDc4MTFmYzRlY2JkZGQ3NjJhMzBhOGZpbHRlcnM9Jm51bWVyaWNGaWx0ZXJzPXZpc2liaWxpdHlfc2VhcmNoJTNEMQ==",
         content: "",
         description: "",
-        enabled: false,
+        enabled: true,
         hasFacets: false,
         imgHtml: "",
         isAddToCartEnabled: false,
-        selector: ".main",
+        selector: ".algolia-search-instant-selector",
         showStaticContent: false,
-        title: ""
+        title: "",
+        sections: [
+            {
+                label: "Products",
+                name: "products",
+            },
+            {
+                label: "Pages",
+                name: "pages"
+            }
+        ]
     },
     isCategoryPage: false,
-    isSearchPage: false,
+    isSearchPage: true,
     maxValuesPerFacet: 10,
     popularQueries: [],
     priceKey: ".USD.default",

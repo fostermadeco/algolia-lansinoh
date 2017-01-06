@@ -2,7 +2,7 @@ import $ from 'jquery';
 import autocomplete from 'autocomplete.js';
 
 module.exports = function() {
-    var algoliaConfig = window.algoliaConfigEE;
+    var algoliaConfig = window.algoliaConfig;
 
     misc();
 
@@ -99,7 +99,7 @@ module.exports = function() {
                         if (algoliaConfig.showSuggestionsOnNoResultsPage && algoliaConfig.popularQueries.length > 0) {
                             $.each(algoliaConfig.popularQueries.slice(0, Math.min(3, algoliaConfig.popularQueries.length)), function (i, query) {
                                 query = $('<div>').html(query).text(); // Avoid xss
-                                suggestions.push('<a href="' + algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + encodeURIComponent(query) + '">' + query + '</a>');
+                                suggestions.push('<a href="' + algoliaConfig.baseUrl + '/search/result/?q=' + encodeURIComponent(query) + '">' + query + '</a>');
                             });
 
                             template += '<div class="suggestions"><div>' + algoliaConfig.translations.popularQueries + '</div>';
@@ -107,7 +107,7 @@ module.exports = function() {
                             template += '</div>';
                         }
 
-                        template += '<div class="see-all">' + (suggestions.length > 0 ? algoliaConfig.translations.or + ' ' : '') + '<a href="' + algoliaConfig.baseUrl + '/catalogsearch/result/?q=__empty__">' + algoliaConfig.translations.seeAll + '</a></div>' +
+                        template += '<div class="see-all">' + (suggestions.length > 0 ? algoliaConfig.translations.or + ' ' : '') + '<a href="' + algoliaConfig.baseUrl + '/search/result/?q=__empty__">' + algoliaConfig.translations.seeAll + '</a></div>' +
                             '</div>';
 
                         return template;
@@ -197,9 +197,9 @@ module.exports = function() {
                         }
 
                         if (hit.facet && hit.facet.value !== 'All departments') {
-                            hit.url = algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + hit.query + '#q=' + hit.query + '&hFR[categories.level0][0]=' + encodeURIComponent(hit.category) + '&idx=' + algoliaConfig.indexName + '_products';
+                            hit.url = algoliaConfig.baseUrl + '/search/result/?q=' + hit.query + '#q=' + hit.query + '&hFR[categories.level0][0]=' + encodeURIComponent(hit.category) + '&idx=' + algoliaConfig.indexName + '_products';
                         } else {
-                            hit.url = algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + hit.query;
+                            hit.url = algoliaConfig.baseUrl + '/search/result/?q=' + hit.query;
                         }
 
                         return algoliaConfig.autocomplete.templates.suggestions.render(hit);
@@ -219,7 +219,7 @@ module.exports = function() {
                 name: i,
                 templates: {
                     suggestion: function (hit) {
-                        hit.url = algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + encodeURIComponent(hit.value) + '&refinement_key=' + section.name;
+                        hit.url = algoliaConfig.baseUrl + '/search/result/?q=' + encodeURIComponent(hit.value) + '&refinement_key=' + section.name;
                         return algoliaConfig.autocomplete.templates.additionnalSection.render(hit);
                     }
                 }
@@ -230,7 +230,7 @@ module.exports = function() {
             source.templates.footer = function (query, content) {
                 var keys = [];
                 for (var key in content.facets['categories.level0']) {
-                    var url = algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + encodeURIComponent(query.query) + '#q=' + encodeURIComponent(query.query) + '&hFR[categories.level0][0]=' + encodeURIComponent(key) + '&idx=' + algoliaConfig.indexName + '_products';
+                    var url = algoliaConfig.baseUrl + '/search/result/?q=' + encodeURIComponent(query.query) + '#q=' + encodeURIComponent(query.query) + '&hFR[categories.level0][0]=' + encodeURIComponent(key) + '&idx=' + algoliaConfig.indexName + '_products';
                     keys.push({
                         key: key,
                         value: content.facets['categories.level0'][key],
@@ -252,7 +252,7 @@ module.exports = function() {
                     ors += ', <span><a href="' + keys[1].url + '">' + keys[1].key + '</a></span>';
                 }
 
-                var allUrl = algoliaConfig.baseUrl + '/catalogsearch/result/?q=' + encodeURIComponent(query.query);
+                var allUrl = algoliaConfig.baseUrl + '/search/result/?q=' + encodeURIComponent(query.query);
                 var returnFooter = '<div id="autocomplete-products-footer">' + algoliaConfig.translations.seeIn + ' <span><a href="' + allUrl + '">' + algoliaConfig.translations.allDepartments + '</a></span> (' + content.nbHits + ')';
 
                 if (ors && algoliaConfig.instant.enabled) {
