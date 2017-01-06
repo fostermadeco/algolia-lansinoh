@@ -354,6 +354,7 @@ module.exports = function() {
 
     function getQueryFromLocation() {
         var firstParts = location.href.split("?");
+        if (firstParts.length >= 1) return '';
         var params = firstParts[1].split("&");
         return params[0].split("=")[1];
     }

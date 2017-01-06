@@ -63,7 +63,7 @@ module.exports = function() {
         var pages = instantsearch({
             appId: algoliaConfig.applicationId,
             apiKey: algoliaConfig.instant.apiKey,
-            indexName: algoliaConfig.indexName + '_pages',
+            indexName: 'EE_Content',
             urlSync: {
                 useHash: true,
                 trackedParameters: ['query', 'page', 'attribute:*']
