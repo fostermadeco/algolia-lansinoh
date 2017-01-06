@@ -1,7 +1,7 @@
 window.algoliaConfig = {
     applicationId: "7CCC0LXQFA",
     autocomplete: {
-        apiKey: "OGVhMzZjOTU1Mjc2MWU3MjRkYjBjMTY1Y2E3NGVkOTdjNWQ1ZDJlMThlYWQ5NmQyM2JiM2NlMGIyY2EzOWI3N2ZpbHRlcnM9",
+        apiKey: "3fdf964632cab487a2619c83e2d95198",
         displaySuggestionsCategories: false,
         enabled: true,
         nbOfCategoriesSuggestions: "1",
@@ -27,11 +27,10 @@ window.algoliaConfig = {
     currencyCode: "USD",
     currencySymbol: "$",
     extensionVersion: "0.0.1",
-    facets: [],
     hitsPerPage: 6,
     indexName: "lansinoh",
     instant: {
-        apiKey:"ZDJiZmYyNzZhYzcwYWY2OGEyY2IyMjNiYjJhOGViM2RhMjY2ZTZkZjIwNDc4MTFmYzRlY2JkZGQ3NjJhMzBhOGZpbHRlcnM9Jm51bWVyaWNGaWx0ZXJzPXZpc2liaWxpdHlfc2VhcmNoJTNEMQ==",
+        apiKey:"3fdf964632cab487a2619c83e2d95198",
         content: "",
         description: "",
         enabled: true,
@@ -39,7 +38,6 @@ window.algoliaConfig = {
         imgHtml: "",
         isAddToCartEnabled: false,
         selector: ".algolia-search-instant-selector",
-        showStaticContent: false,
         title: "",
         sections: [
             {
