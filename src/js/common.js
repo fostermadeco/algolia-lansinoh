@@ -83,7 +83,6 @@ module.exports = function() {
         var source;
 
         if (section.name === "products") {
-            console.log("this");
             options.facets = ['categories.level0'];
             // options.numericFilters = 'visibility_search=1';
 
@@ -100,7 +99,8 @@ module.exports = function() {
                         if (algoliaConfig.showSuggestionsOnNoResultsPage && algoliaConfig.popularQueries.length > 0) {
                             $.each(algoliaConfig.popularQueries.slice(0, Math.min(3, algoliaConfig.popularQueries.length)), function (i, query) {
                                 query = $('<div>').html(query).text(); // Avoid xss
-                                suggestions.push('<a href="' + algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query) + '">' + query + '</a>');
+                                var link = '<a href="' + algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query) + '">' + query + '</a>';
+                                suggestions.push(link);
                             });
 
                             template += '<div class="suggestions"><div>' + algoliaConfig.translations.popularQueries + '</div>';
@@ -198,7 +198,7 @@ module.exports = function() {
                         }
 
                         if (hit.facet && hit.facet.value !== 'All departments') {
-                            hit.url = algoliaConfig.baseUrl + '/search/result/#q=' + hit.query + '#q=' + hit.query + '&hFR[categories.level0][0]=' + encodeURIComponent(hit.category) + '&idx=' + algoliaConfig.indexName + '_products';
+                            hit.url = algoliaConfig.baseUrl + '/search/result/#q=' + hit.query + '&hFR[categories.level0][0]=' + encodeURIComponent(hit.category) + '&idx=' + algoliaConfig.indexName + '_products';
                         } else {
                             hit.url = algoliaConfig.baseUrl + '/search/result/#q=' + hit.query;
                         }
@@ -233,7 +233,7 @@ module.exports = function() {
                 console.log(content);
                 var keys = [];
                 for (var key in content.facets['categories.level0']) {
-                    var url = algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query.query) + '#q=' + encodeURIComponent(query.query) + '&hFR[categories.level0][0]=' + encodeURIComponent(key) + '&idx=' + algoliaConfig.indexName + '_products';
+                    var url = algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query.query) + '&hFR[categories.level0][0]=' + encodeURIComponent(key) + '&idx=' + algoliaConfig.indexName + '_products';
                     keys.push({
                         key: key,
                         value: content.facets['categories.level0'][key],
