@@ -1299,6 +1299,7 @@ a.ais-current-refined-values--link:hover
   margin: 10px 0 20px 0;
   font-weight: bold;
   cursor: pointer;
+  display: none;
 }
 
 #algolia-static-content

@@ -99,6 +99,14 @@ module.exports = function() {
                 });
             
         });
+
+        // fix for algolia wrapping search input with span for width toggle
+        $("input#keywords").bind("focus", function() {
+            $(this).parent('span').addClass("focused");
+        });
+        $("input#keywords").bind("blur", function() {
+            $(this).parent('span').removeClass("focused");
+        });
     };
 
 

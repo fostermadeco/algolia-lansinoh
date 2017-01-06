@@ -6,8 +6,8 @@
      
      <div class="row">
          <div class="col-md-3" id="algolia-left-container">
-             <div id="refine-toggle" class="visible-xs visible-sm">+ Refine</div>
-             <div class="hidden-xs hidden-sm" id="instant-search-facets-container">
+             <div id="refine-toggle">+ Refine</div>
+             <div id="instant-search-facets-container">
                  <div id="current-refinements"></div>
              </div>
          </div>

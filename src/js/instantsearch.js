@@ -14,9 +14,9 @@ module.exports = function() {
 
         // check specifically for a search page
         var pathArray = window.location.pathname.split( '/' );
-        // if (pathArray[2] !== 'search') {
-        //     return;
-        // }
+        if (pathArray[2] !== 'search' && pathArray[1] !== 'catalogsearch' && location.host !== '127.0.0.1:8080') {
+            return;
+        }
 
         /** We have nothing to do here if instantsearch is not enabled **/
         // if (!algoliaConfig.instant.enabled || !(algoliaConfig.isSearchPage || !algoliaConfig.autocomplete.enabled)) {
