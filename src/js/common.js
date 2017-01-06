@@ -4,8 +4,6 @@ import autocomplete from 'autocomplete.js';
 module.exports = function() {
     var algoliaConfig = window.algoliaConfig;
 
-    misc();
-
     return {
         transformHit,
         getAutocompleteSource,
@@ -13,7 +11,9 @@ module.exports = function() {
         fixAutocompleteCssSticky,
         handleInputCrossAutocomplete,
         focusInstantSearchBar,
-        handleInputCrossInstant
+        handleInputCrossInstant,
+        getQueryFromLocation,
+        misc
     };
 
     function transformHit(hit, price_key) {
@@ -252,7 +252,7 @@ module.exports = function() {
                     ors += ', <span><a href="' + keys[1].url + '">' + keys[1].key + '</a></span>';
                 }
 
-                var allUrl = algoliaConfig.baseUrl + '/search/result/?q=' + encodeURIComponent(query.query);
+                var allUrl = algoliaConfig.baseUrl + '/search/result/#q=' + encodeURIComponent(query.query);
                 var returnFooter = '<div id="autocomplete-products-footer">' + algoliaConfig.translations.seeIn + ' <span><a href="' + allUrl + '">' + algoliaConfig.translations.allDepartments + '</a></span> (' + content.nbHits + ')';
 
                 if (ors && algoliaConfig.instant.enabled) {
@@ -351,6 +351,12 @@ module.exports = function() {
             input.closest('#instant-search-box').find('.clear-query-instant').hide();
         }
     };
+
+    function getQueryFromLocation() {
+        var firstParts = location.href.split("?");
+        var params = firstParts[1].split("&");
+        return params[0].split("=")[1];
+    }
 
     function misc() {
         $(algoliaConfig.autocomplete.selector).each(function () {

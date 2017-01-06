@@ -17,11 +17,6 @@ window.algoliaConfig = {
                 hitsPerPage: "3",
                 label: "Pages",
                 name: "pages"
-            },
-            {            
-                hitsPerPage: "1",
-                label: "Categories",
-                name: "categories",
             }
         ],
         templates: {},
@@ -34,7 +29,7 @@ window.algoliaConfig = {
     extensionVersion: "0.0.1",
     facets: [],
     hitsPerPage: 6,
-    indexName: "magento_lansinoh",
+    indexName: "lansinoh",
     instant: {
         apiKey:"ZDJiZmYyNzZhYzcwYWY2OGEyY2IyMjNiYjJhOGViM2RhMjY2ZTZkZjIwNDc4MTFmYzRlY2JkZGQ3NjJhMzBhOGZpbHRlcnM9Jm51bWVyaWNGaWx0ZXJzPXZpc2liaWxpdHlfc2VhcmNoJTNEMQ==",
         content: "",
@@ -80,7 +75,7 @@ window.algoliaConfig = {
         go: "Go",
         in: "in",
         nextPage: "Next page",
-        noProducts: "No products for query",
+        noProducts: "No results for query",
         noResults: "No results",
         or: "or",
         orIn: "or in",

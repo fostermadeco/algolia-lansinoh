@@ -1,6 +1,6 @@
 <a class="algoliasearch-autocomplete-hit" href="{{url}}">
     <div class="info-without-thumb">
-        {{{_highlightResult.name.value}}}
+        {{{_highlightResult.title.value}}}
 
         {{#content}}
             <div class="details">

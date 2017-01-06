@@ -63,7 +63,7 @@ module.exports = function() {
         var pages = instantsearch({
             appId: algoliaConfig.applicationId,
             apiKey: algoliaConfig.instant.apiKey,
-            indexName: 'magento_default_products',
+            indexName: algoliaConfig.indexName + '_pages',
             urlSync: {
                 useHash: true,
                 trackedParameters: ['query', 'page', 'attribute:*']
@@ -75,7 +75,7 @@ module.exports = function() {
             apiKey: algoliaConfig.instant.apiKey,
             indexName: algoliaConfig.indexName + '_products',
             searchFunction: function(helper) {
-                var query = products.helper.state.query;
+                var query = helper.state.query;
                 pages.helper.setQuery(query);
                 pages.helper.search();
                 helper.search();
@@ -345,7 +345,12 @@ module.exports = function() {
             
             pages.start();
             products.start();
-            
+
+            var queryInHash = location.hash
+            var queryOnLoad = pages.helper.state.query !== '' ? pages.helper.state.query : common.getQueryFromLocation();
+
+            $(instantSelector).val(queryOnLoad);
+
             if (algoliaConfig.autocomplete.enabled) {
                 $('#search_mini_form').addClass('search-page');
             }

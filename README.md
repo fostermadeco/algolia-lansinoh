@@ -1,6 +1,6 @@
 # Lansinoh Algolia Search for EE
 
-This is repurposing of the Magento search extension for Algolia integration [https://github.com/algolia/algoliasearch-magento-2](https://github.com/algolia/algoliasearch-magento-2_)
+This is repurposing of the Magento search extension for Algolia integration [https://github.com/algolia/algoliasearch-magento-2](https://github.com/algolia/algoliasearch-magento-2)
 
 It uses:
 * [Algolia js search client](https://github.com/algolia/algoliasearch-client-javascript)
