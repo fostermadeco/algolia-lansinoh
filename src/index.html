@@ -6,14 +6,13 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
         
+        <!-- css for algolia search -->
         <link rel="stylesheet" href="css/algoliaSearch.css">
     </head>
     <body>
+
+        <!-- html for algolia autcomplete search (search bar) -->
         <form id="search_mini_form" action="#" method="get">
             <div class="form-search">
                 <input id="keywords" type="text" name="q" class="input-text algolia-autocomplete-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search">
@@ -24,13 +23,211 @@
             <div id="algolia-search-autocomplete-container"></div>
         </form>
 
+        <!-- html for algolia results page search -->
         <div class="algolia-search-instant-selector">
             <div id="algolia-search-instant-container"></div>
         </div>
 
+        <!-- flat file config base on output of magento algolia config -->
         <script src="js/algoliaConfig.js"></script>
+        <!-- algolia search js bundle -->
         <script src="assets/algoliaSearch.bundle.js"></script>
 
+        <script type="text/template" id="autocomplete_categories_template">
+            <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+                {{#image_url}}
+                    <div class="thumb">
+                        <img src="{{image_url}}" />
+                    </div>
+                {{/image_url}}
+
+                <div class="info{{^image_url}}-without-thumb{{/image_url}}">
+
+                    {{#_highlightResult.path}}
+                        {{{_highlightResult.path.value}}}
+                    {{/_highlightResult.path}}
+                    {{^_highlightResult.path}}
+                        {{{path}}}
+                    {{/_highlightResult.path}}
+
+                    {{#product_count}}
+                        <small>({{product_count}})</small>
+                    {{/product_count}}
+
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </script>
+        <script type="text/template" id="autocomplete_extra_template">
+            <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+                <div class="info-without-thumb">
+                    {{{_highlightResult.value.value}}}
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </script>
+        <script type="text/template" id="autocomplete_pages_template">
+            <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+                <div class="info-without-thumb">
+                    {{{_highlightResult.title.value}}}
+
+                    {{#content}}
+                        <div class="details">
+                            {{{content}}}
+                        </div>
+                    {{/content}}
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </script>
+        <script type="text/template" id="autocomplete_products_template">
+            <!-- Product hit template -->
+            <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+                {{#thumbnail_url}}
+                    <div class="thumb"><img src="{{thumbnail_url}}" /></div>
+                {{/thumbnail_url}}
+
+                <div class="info">
+                    {{{_highlightResult.name.value}}}
+
+                    <div class="algoliasearch-autocomplete-category">
+                        {{#categories_without_path}}
+                            in                    {{{categories_without_path}}}
+                        {{/categories_without_path}}
+
+                        {{#_highlightResult.color}}
+                            {{#_highlightResult.color.value}}
+                                <span>
+                                   {{#categories_without_path}} | {{/categories_without_path}} Color:  {{{_highlightResult.color.value}}}
+                                </span>
+                            {{/_highlightResult.color.value}}
+                        {{/_highlightResult.color}}
+                    </div>
+
+                    <div class="algoliasearch-autocomplete-price">
+                        <span class="after_special {{#price.USD.default_original_formated}}promotion{{/price.USD.default_original_formated}}">
+                            {{price.USD.default_formated}}
+                        </span>
+
+                        {{#price.USD.default_original_formated}}
+                            <span class="before_special">
+                                {{price.USD.default_original_formated}}
+                            </span>
+                        {{/price.USD.default_original_formated}}
+                    </div>
+                </div>
+            </a>
+        </script>
+        <script type="text/template" id="autocomplete_suggestions_template">
+            <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="algolia-glass-suggestion magnifying-glass" width="24" height="24" viewBox="0 0 128 128" >
+                    <g transform="scale(2.5)">
+                        <path stroke-width="3" d="M19.5 19.582l9.438 9.438"></path>
+                        <circle stroke-width="3" cx="12" cy="12" r="10.5" fill="none"></circle>
+                        <path d="M23.646 20.354l-3.293 3.293c-.195.195-.195.512 0 .707l7.293 7.293c.195.195.512.195.707 0l3.293-3.293c.195-.195.195-.512 0-.707l-7.293-7.293c-.195-.195-.512-.195-.707 0z" ></path>
+                    </g>
+                </svg>
+                <div class="info-without-thumb">
+                    {{{_highlightResult.query.value}}}
+
+                    {{#category}}
+                        <span class="text-muted">in</span> <span class="category-tag">{{category}}</span>
+                    {{/category}}
+                </div>
+                <div class="clearfix"></div>
+            </a>
+        </script>
+        <script type="text/template" id="instant_wrapper_template">
+            {{#findAutocomplete}}
+             <div id="algolia-search-instant-container"></div>
+             {{/findAutocomplete}}
+             <div id="algolia_instant_selector" class="">
+
+                 
+                 <div class="row">
+                     <div class="col-md-3" id="algolia-left-container">
+                         <div id="refine-toggle">+ Refine</div>
+                         <div id="instant-search-facets-container">
+                             <div id="current-refinements"></div>
+                         </div>
+                     </div>
+
+                     <div class="col-md-9" id="algolia-right-container">
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <div>
+                                     {{#second_bar}}
+                                     <div id="instant-search-bar-container">
+                                         <div id="instant-search-box">
+                                             <div class="instant-search-bar-label">
+                                                 <span class="icon"></span>
+                                                 <span>Current search</span>
+                                             </div>
+                                             <div class="instant-search-bar-wrapper">
+                                                 <label for="instant-search-bar">
+                                                     Search:                                        </label>
+
+                                                 <input placeholder="Search for products"
+                                                        id="instant-search-bar" type="text" autocomplete="off" spellcheck="false"
+                                                        autocorrect="off" autocapitalize="off"/>
+
+                                                 <span class="clear-cross clear-query-instant"></span>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     {{/second_bar}}
+                                 </div>
+                             </div>
+                         </div>
+                         <ul class="tabs search-results-tabs">
+                            <li>Products</li>
+                            <li>Pages</li>
+                         </ul>
+                         <div class="row">
+                             <div>
+                                 <div class="hits">
+                                     <div class="infos" style="display:none;">
+                                         <div class="pull-right">
+                                             <div class="sort-by-label pull-left">
+                                                 SORT BY                                    </div>
+                                             <div class="pull-left" id="algolia-sorts"></div>
+                                         </div>
+                                         <div class="clearfix"></div>
+                                     </div>
+                                     <div class="row tabbed-content">
+                                        <div class="col-md-12">
+                                            <h5>Products</h5>
+                                            <div class="infos">
+                                                <div class="pull-left" id="algolia-stats-products"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div id="instant-search-results-container-products" class="instant-search-results-container clearfix"></div>
+                                            <div class="text-center clearfix">
+                                                <div id="instant-search-pagination-container-products"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row tabbed-content">
+                                        <div class="col-md-12">
+                                            <h5>Pages</h5>
+                                            <div class="infos">
+                                                <div class="pull-left" id="algolia-stats-pages"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div id="instant-search-results-container-pages" class="instant-search-results-container clearfix"></div>
+                                            <div class="text-center clearfix">
+                                                <div id="instant-search-pagination-container-pages"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                             </div>
+                             <div class="clearfix"></div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </script>
         <script type="text/template" id="menu-template">
             <div class="autocomplete-wrapper">
                 <div class="col12">
@@ -110,7 +307,7 @@
                             <div class="result-content">
                                 <div class="result-sub-content">
                                     <h3 class="result-title text-ellipsis">
-                                        Page: {{{ _highlightResult.name.value }}}
+                                        {{{ _highlightResult.title.value }}}
                                     </h3>
                                 </div>
                             </div>

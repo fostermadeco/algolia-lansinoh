@@ -1,11 +1,11 @@
 import $ from 'jquery';
 import algoliasearch from 'algoliasearch';
 import autocomplete from 'autocomplete.js';
+import Hogan from 'hogan.js';
 
 module.exports = function() {
     var algoliaConfig = window.algoliaConfig;
     var common = require('./common')(algoliaConfig);
-    var templates = require('../templates')();
 
     return {
         init: init
@@ -24,11 +24,11 @@ module.exports = function() {
          * Docs: http://twitter.github.io/hogan.js/
          **/
         algoliaConfig.autocomplete.templates = {
-            suggestions: templates['autocomplete_suggestions_template'],
-            products: templates['autocomplete_products_template'],
-            categories: templates['autocomplete_categories_template'],
-            pages: templates['autocomplete_pages_template'],
-            additionnalSection: templates['autocomplete_extra_template']
+            suggestions: Hogan.compile($('#autocomplete_suggestions_template').html()),
+            products: Hogan.compile($('#autocomplete_products_template').html()),
+            categories: Hogan.compile($('#autocomplete_categories_template').html()),
+            pages: Hogan.compile($('#autocomplete_pages_template').html()),
+            additionnalSection: Hogan.compile($('#autocomplete_extra_template').html())
         };
         
         /**

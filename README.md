@@ -10,11 +10,13 @@ It uses:
 * jQuery
 
 ## Notes about implementation
-The `eeConfig.js` is saved to window.eeAlgoliaConfig. It is not included in the bundle. It needs to be dynamic and will be generated from ee. This exact implementation will probably be altered once it's hooked up to ee.
+The `algoliaConfig.js` is saved to window.algoliaConfig. It is not included in the bundle. It needs to be dynamic and will be generated from ee. This exact implementation will probably be altered once it's hooked up to ee.
 
-The eeConfig contains the property indexName: 'magento_lansinoh', the files add a suffix onto this, e.g. '_products'. So indicies need to be names accordingly. Multiple indicies can be searched, they should be added to autocomplete.sections array. Also the autocomplete (search bar) and instant search are toggled via the autocomplete.enabled and instant.enabled & isSearchPage. 
+The algoliaConfig contains the property indexName: 'lansinoh', the files add a suffix onto this, e.g. '\_products' So indicies need to be names accordingly. Multiple indicies can be searched. For the autocomplete search they should be added to autocomplete.sections array. For the instant search, it is setup to look for '\_products' and '\_pages' indicies. 
 
 ## Templates
+
+Templates were moved to be all inline in html to make them easier to edit. Notes on the additional setup are below, but not necessary.
 
 Some templates are moustache. Those are compiled into one file. Hogan has a non-documented script that will compile the template:
 

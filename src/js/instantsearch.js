@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import instantsearch from 'instantsearch.js';
+import Hogan from 'hogan.js';
 
 module.exports = function() {
     var algoliaConfig = window.algoliaConfig;
     var common = require('./common')(algoliaConfig);
-    var templates = require('../templates')();
 
     return {
         init: init,
@@ -38,7 +38,7 @@ module.exports = function() {
          * For templating is used Hogan library
          * Docs: http://twitter.github.io/hogan.js/
          **/
-        var wrapperTemplate = templates['instant_wrapper_template'];
+        var wrapperTemplate = Hogan.compile($('#instant_wrapper_template').html());
         var instantSelector = "#instant-search-bar";
         
         var div = document.createElement('div');
@@ -63,7 +63,7 @@ module.exports = function() {
         var pages = instantsearch({
             appId: algoliaConfig.applicationId,
             apiKey: algoliaConfig.instant.apiKey,
-            indexName: 'EE_Content',
+            indexName: algoliaConfig.indexName + '_pages',
             urlSync: {
                 useHash: true,
                 trackedParameters: ['query', 'page', 'attribute:*']

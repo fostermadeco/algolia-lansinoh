@@ -1,6 +1,0 @@
-<a class="algoliasearch-autocomplete-hit" href="{{url}}">
-    <div class="info-without-thumb">
-        {{{_highlightResult.value.value}}}
-    </div>
-    <div class="clearfix"></div>
-</a>

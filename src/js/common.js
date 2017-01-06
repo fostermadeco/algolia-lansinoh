@@ -83,6 +83,7 @@ module.exports = function() {
         var source;
 
         if (section.name === "products") {
+            console.log("this");
             // options.facets = ['categories.level0'];
             // options.numericFilters = 'visibility_search=1';
 
