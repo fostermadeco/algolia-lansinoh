@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import algoliasearch from 'algoliasearch';
 import instantsearch from 'instantsearch.js';
 
 module.exports = function() {
@@ -8,7 +7,8 @@ module.exports = function() {
     var templates = require('../templates')();
 
     return {
-        init: init
+        init: init,
+        addTabs: addTabs
     }
     function init() {
 
@@ -356,5 +356,21 @@ module.exports = function() {
         /** Initialise searching **/
         startInstantSearch();
     };
+
+    function addTabs() {
+        if ($(".search-results-tabs").length === 0) return;
+        // Algolia search results tabs
+        $(".search-results-tabs li:first-child").addClass("active");
+        $("#algolia_instant_selector .tabbed-content:first").addClass("active");
+        $(".search-results-tabs li").each(function() {
+            $(this).on("click", function () {
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                $("#algolia_instant_selector .tabbed-content").removeClass("active");
+                var index = $(this).index();
+                $("#algolia_instant_selector .tabbed-content:eq(" + index + ")").addClass("active");
+            });
+        });
+    }
 }
 
