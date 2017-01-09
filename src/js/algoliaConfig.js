@@ -50,6 +50,12 @@ window.algoliaConfig = {
             }
         ]
     },
+    facets: [
+        {
+            attribute: "categories",
+            label: "Products"
+        }
+    ],
     isCategoryPage: false,
     isSearchPage: true,
     maxValuesPerFacet: 10,

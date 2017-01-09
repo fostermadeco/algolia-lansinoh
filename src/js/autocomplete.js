@@ -83,7 +83,7 @@ module.exports = function() {
                     dropdownMenu: '#menu-template'
                 },
                 dropdownMenuContainer: "#algolia-search-autocomplete-container",
-                debug: false
+                debug: true
             };
             
             if (algoliaConfig.removeBranding === false) {

@@ -1,3 +1,6 @@
 .form-search #keywords  {
     width: 100%;
 }
+.aa-dropdown-menu {
+    top: 40px !important;
+}

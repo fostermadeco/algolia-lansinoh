@@ -92,29 +92,29 @@ module.exports = function() {
          * Custom widget - this widget is used to refine results for search page or catalog page
          * Docs: https://community.algolia.com/instantsearch.js/documentation/#custom-widgets
          **/
-        // search.addWidget({
-        //     getConfiguration: function () {
-        //         if (algoliaConfig.request.query.length > 0 && location.hash.length < 1) {
-        //             return {query: algoliaConfig.request.query}
-        //         }
-        //         return {};
-        //     },
-        //     init: function (data) {
-        //         if (algoliaConfig.request.refinementKey.length > 0) {
-        //             data.helper.toggleRefine(algoliaConfig.request.refinementKey, algoliaConfig.request.refinementValue);
-        //         }
-        //     },
-        //     render: function (data) {
-        //         // if (data.results.query.length === 0) {
-        //         //     $('.algolia-instant-replaced-content').show();
-        //         //     $('.algolia-instant-selector-results').hide();
-        //         // }
-        //         // else {
-        //         //     $('.algolia-instant-replaced-content').hide();
-        //         //     $('.algolia-instant-selector-results').show();
-        //         // }
-        //     }
-        // });
+        products.addWidget({
+            getConfiguration: function () {
+                if (algoliaConfig.request.query.length > 0 && location.hash.length < 1) {
+                    return {query: algoliaConfig.request.query}
+                }
+                return {};
+            },
+            init: function (data) {
+                if (algoliaConfig.request.refinementKey.length > 0) {
+                    data.helper.toggleRefine(algoliaConfig.request.refinementKey, algoliaConfig.request.refinementValue);
+                }
+            },
+            render: function (data) {
+                // if (data.results.query.length === 0) {
+                //     $('.algolia-instant-replaced-content').show();
+                //     $('.algolia-instant-selector-results').hide();
+                // }
+                // else {
+                //     $('.algolia-instant-replaced-content').hide();
+                //     $('.algolia-instant-selector-results').show();
+                // }
+            }
+        });
 
         /**
         * Search box
@@ -201,7 +201,6 @@ module.exports = function() {
         });
         pages.addWidget(sortPages);
 
-        
         /**
          * Products' hits
          * This widget renders all products into result page
@@ -281,33 +280,45 @@ module.exports = function() {
         // });
         
         /** Setup attributes for current refinements widget **/
-        var attributes = [];
-        $.each(algoliaConfig.facets, function (i, facet) {
-            var name = facet.attribute;
+        // var attributes = [];
+        // $.each(algoliaConfig.facets, function (i, facet) {
+        //     var name = facet.attribute;
             
-            if (name === 'categories') {
-                if (algoliaConfig.isCategoryPage) {
-                    return;
+        //     if (name === 'categories') {
+        //         if (algoliaConfig.isCategoryPage) {
+        //             return;
+        //         }
+        //         name = 'categories.level0';
+        //     }
+            
+        //     if (name === 'price') {
+        //         name = facet.attribute + algoliaConfig.priceKey
+        //     }
+            
+        //     attributes.push({
+        //         name: name,
+        //         label: facet.label ? facet.label : facet.attribute
+        //     });
+        // });
+
+        products.addWidget(
+            instantsearch.widgets.refinementList({
+                container: '#algolia-left-container',
+                attributeName: 'categories.level0',
+                operator: 'or',
+                limit: 10,
+                templates: {
+                    header: 'Products by Category',
                 }
-                name = 'categories.level0';
-            }
-            
-            if (name === 'price') {
-                name = facet.attribute + algoliaConfig.priceKey
-            }
-            
-            attributes.push({
-                name: name,
-                label: facet.label ? facet.label : facet.attribute
-            });
-        });
-        
+            })
+        );
+
         /**
          * Widget name: Current refinements
          * Widget displays all filters and refinements applied on query. It also let your customer to clear them one by one
          * Docs: https://community.algolia.com/instantsearch.js/documentation/#currentrefinedvalues
          **/
-        // search.addWidget(
+        // products.addWidget(
         //     instantsearch.widgets.currentRefinedValues({
         //         container: '#current-refinements',
         //         cssClasses: {
