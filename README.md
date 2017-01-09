@@ -19,7 +19,6 @@ It uses:
 
 For autocomplete:
 ```
-<!-- html for algolia autcomplete search (search bar) -->
 <form id="search_mini_form" action="#" method="get">
     <div class="form-search">
         <input id="keywords" type="text" name="keywords" class="input-text algolia-autocomplete-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search">
@@ -31,7 +30,6 @@ For autocomplete:
 
 For instant search results page:
 ```
-<!-- html for algolia results page search -->
 <div class="algolia-search-instant-selector">
     <div id="algolia-search-instant-container"></div>
 </div>
