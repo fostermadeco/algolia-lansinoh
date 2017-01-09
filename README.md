@@ -10,10 +10,10 @@ It uses:
 * jQuery
 
 ## Files
-css - /src/css/algoliaSearch.css
-templates - inline in /src/js/index.html
-js (prod) - /dist/algoliaSearch.bundle.js
-js (dev) - /assets/algoliaSearch.bundle.js (has debug on so autocomplete stays open)
+* css - /src/css/algoliaSearch.css
+* templates - inline in /src/js/index.html
+* js (prod) - /dist/algoliaSearch.bundle.js
+* js (dev) - /assets/algoliaSearch.bundle.js (has debug on so autocomplete stays open)
 
 ## Notes about implementation
 The `algoliaConfig.js` is saved to window.algoliaConfig. It is not included in the bundle. It needs to be dynamic and will be generated from ee. This exact implementation will probably be altered once it's hooked up to ee.
