@@ -21,7 +21,7 @@ For autocomplete:
 ```
 <form id="search_mini_form" action="#" method="get">
     <div class="form-search">
-        <input id="keywords" type="text" name="keywords" class="input-text algolia-autocomplete-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search">
+        <input id="search" type="text" name="search" class="input-text algolia-autocomplete-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search">
         <button type="submit" title="Search" class="button">Search</button>
     </div>
     <div id="algolia-search-autocomplete-container"></div>
