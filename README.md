@@ -12,8 +12,32 @@ It uses:
 ## Files
 * css - /src/css/algoliaSearch.css
 * templates - inline in /src/js/index.html
+* html - 
 * js (prod) - /dist/algoliaSearch.bundle.js
 * js (dev) - /assets/algoliaSearch.bundle.js (has debug on so autocomplete stays open)
+* html:
+
+For autocomplete:
+```
+<!-- html for algolia autcomplete search (search bar) -->
+<form id="search_mini_form" action="#" method="get">
+    <div class="form-search">
+        <input id="keywords" type="text" name="q" class="input-text algolia-autocomplete-input" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="Search">
+        <button type="submit" title="Search" class="button"><span><span>Search</span></span></button>
+        <span class="clear-cross clear-query-autocomplete"></span>
+        <span id="algolia-glass" class="magnifying-glass" width="24" height="24"></span>
+    </div>
+    <div id="algolia-search-autocomplete-container"></div>
+</form>
+```
+
+For instant search results page:
+```
+<!-- html for algolia results page search -->
+<div class="algolia-search-instant-selector">
+    <div id="algolia-search-instant-container"></div>
+</div>
+```
 
 ## Notes about implementation
 The `algoliaConfig.js` is saved to window.algoliaConfig. It is not included in the bundle. It needs to be dynamic and will be generated from ee. This exact implementation will probably be altered once it's hooked up to ee.
