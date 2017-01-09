@@ -12,6 +12,7 @@ It uses:
 ## Files
 * css - /src/css/algoliaSearch.css
 * templates - inline in /src/js/index.html
+* config file - /src/js/algoliaConfig.js (needs to be loaded before js)
 * js (prod) - /dist/algoliaSearch.bundle.js
 * js (dev) - /assets/algoliaSearch.bundle.js (has debug on so autocomplete stays open)
 * html:
