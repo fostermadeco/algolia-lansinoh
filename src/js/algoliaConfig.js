@@ -24,6 +24,7 @@ window.algoliaConfig = {
     },
     autofocus: true,
     baseUrl: "http://lansinohdev.brandshop.com",
+    resultsPathname: '/search',
     currencyCode: "USD",
     currencySymbol: "$",
     extensionVersion: "0.0.1",
