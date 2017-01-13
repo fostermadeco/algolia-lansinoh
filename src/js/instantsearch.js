@@ -365,6 +365,18 @@ module.exports = function() {
                 scrollTo: 'body'
             })
         );
+
+        function updateSearchTerm(term) {
+            var $searchText = $("h1.results span");
+            if ($searchText.length > 0) {
+                $searchText.text(term);
+            }
+        }
+        $("#instant-search-bar").on("input", function() {
+            var term = $(this).val();
+            updateSearchTerm(term);
+        });
+        updateSearchTerm($("#instant-search-bar").val());
         
         var isStarted = false;
         function startInstantSearch() {

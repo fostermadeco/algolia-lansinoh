@@ -25,6 +25,8 @@
 
         <br/><br/><hr><br/><br/>
 
+        <h1 class="results">Search Results <span></span></h1>
+
         <!-- html for algolia results page search -->
         <div class="algolia-search-instant-selector">
             <div id="algolia-search-instant-container"></div>
@@ -33,7 +35,7 @@
         <!-- flat file config base on output of magento algolia config -->
         <script src="js/algoliaConfig.js"></script>
         <!-- algolia search js bundle - dist/algoliaSearch.bundle.js for prod -->
-        <script src="assets/algoliaSearch.bundle.js"></script>
+        <script src="dist/algoliaSearch.bundle.js"></script>
 
         <script type="text/template" id="autocomplete_categories_template">
             <a class="algoliasearch-autocomplete-hit" href="{{url}}">
