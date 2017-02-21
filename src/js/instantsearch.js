@@ -4,7 +4,7 @@ import Hogan from 'hogan.js';
 
 module.exports = function() {
     var algoliaConfig = window.algoliaConfig;
-    var common = require('./common')(algoliaConfig);
+    var common = require('./common')();
 
     return {
         init: init,
@@ -63,7 +63,7 @@ module.exports = function() {
         var pages = instantsearch({
             appId: algoliaConfig.applicationId,
             apiKey: algoliaConfig.instant.apiKey,
-            indexName: algoliaConfig.indexName + '_pages',
+            indexName: common.getIndexName('pages'),
             urlSync: {
                 useHash: true,
                 trackedParameters: ['query', 'page', 'attribute:*']
@@ -73,7 +73,7 @@ module.exports = function() {
         var products = instantsearch({
             appId: algoliaConfig.applicationId,
             apiKey: algoliaConfig.instant.apiKey,
-            indexName: algoliaConfig.indexName + '_products',
+            indexName: common.getIndexName('products'),
             searchFunction: function(helper) {
                 var query = helper.state.query;
                 pages.helper.setQuery(query);
@@ -174,7 +174,7 @@ module.exports = function() {
          // for products
         var productRelevanceSort = [
             {
-                name: algoliaConfig.indexName + '_products',
+                name: common.getIndexName('products'),
                 label: algoliaConfig.translations.relevance
             }
         ]
@@ -189,7 +189,7 @@ module.exports = function() {
         // for pages
         var pagesRelevanceSort = [
             {
-                name: algoliaConfig.indexName + '_pages',
+                name: common.getIndexName('pages'),
                 label: algoliaConfig.translations.relevance
             }
         ]

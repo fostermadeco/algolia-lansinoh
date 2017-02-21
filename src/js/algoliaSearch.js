@@ -1,8 +1,7 @@
-var autocomplete = require('./autocomplete')();
-var instantsearch = require('./instantsearch')();
+const autocomplete = require('./autocomplete')();
+const instantsearch = require('./instantsearch')();
 
-var algoliaConfig = window.algoliaConfig;
-var common = require('./common')(algoliaConfig);
+const common = require('./common')();
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     common.misc();

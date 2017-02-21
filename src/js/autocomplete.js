@@ -5,7 +5,7 @@ import Hogan from 'hogan.js';
 
 module.exports = function() {
     var algoliaConfig = window.algoliaConfig;
-    var common = require('./common')(algoliaConfig);
+    var common = require('./common')();
 
     return {
         init: init
