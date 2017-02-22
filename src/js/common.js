@@ -273,11 +273,8 @@ module.exports = function() {
         // language is only used for ee content, e.g. lansinoh_pages_en and lansinoh_pages_eg
         const language = (pathArray[1] === 'en' || pathArray[1] === 'es') ? pathArray[1] : 'en';
         // magento specific indicies have magento prefix, e.g. lansinoh_magento_lansinoh_products
-        const magentoIndexName = algoliaConfig.indexName + '_magento_lansinoh_';
-        if (section === 'pages') {
-            return algoliaConfig.indexName + '_pages_' + language;
-        }
-        return magentoIndexName + section;
+        console.log(algoliaConfig.indexName + '_' + language + '_' + section);
+        return algoliaConfig.indexName + '_' + language + '_' + section;
     }
 
     function getSearchUrl(facet) {
